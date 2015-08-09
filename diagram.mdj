@@ -561,9 +561,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 199,
+									"left": 203,
 									"top": 78,
-									"width": 60.3408203125,
+									"width": 52.7490234375,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -573,7 +573,7 @@
 									},
 									"edgePosition": 0,
 									"underline": false,
-									"text": "+-instance",
+									"text": "-instance",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5
 								},
@@ -836,11 +836,11 @@
 								"_parent": {
 									"$ref": "AAAAAAFPDWqECieqSUo="
 								},
-								"name": "-instance",
+								"name": "instance",
 								"reference": {
 									"$ref": "AAAAAAFPDOmSYR8l1dU="
 								},
-								"visibility": "public",
+								"visibility": "private",
 								"navigable": true,
 								"aggregation": "none",
 								"multiplicity": "1",
