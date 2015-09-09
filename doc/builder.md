@@ -1,0 +1,35 @@
+# 建造者模式
+
+Tags: 设计模式 读书笔记 技术
+
+---
+
+## 建造者模式的定义
+
+建造者模式（Builder Pattern）也叫做生成器模式，其定义如下：
+
+> Separate the construction of a complex object from its representation so that the same construction process can create different representation.
+> 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
+
+建造者模式中有如下4个角色：
+1. Product产品类：通常是实现了模版方法模式，也就是有模版方法和基本方法；
+2. Builder抽象建造者：规范产品的组建，一般由子类实现；
+3. ConcreteBuilder具体建造者：实现抽象类定义的所有方法，并且返回一个组建好的对象；
+4. Director导演类：负责安排已有模块的顺序，然后告诉Builder开始建造。
+
+建造者模式和工厂模式的区别：建造者模式最主要的功能是基本方法的调用顺序安排，即组装；工厂模式的重点则是创建，创建零件是他的主要职责。
+
+## 建造者模式之利
+1. 封装性；
+2. 建造者独立，容易扩展；
+3. 便于控制细节风险。
+
+## 建造者模式之弊
+
+## 适用场合
+1. 相同的方法，不同的执行顺序，产生不同的事件结果时，可以采用建造者模式；
+2. 多个部件或零件，都可以装配到一个对象中，但是产生的运行结果又不相同时，则可以使用该模式；
+3. 产品类非常复杂，或者产品类中的调用顺序不同产生了不同的效能，这时候使用建造者模式非常合适。
+
+## 类图结构
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="562.130859375" height="234"><defs/><g><g transform="translate(-13,-10) scale(1,1)"><rect fill="#ffffff" stroke="none" x="23" y="20" width="110.130859375" height="57"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 23 20 L 133.130859375 20 L 133.130859375 77 L 23 77 L 23 20 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 23 45 L 133.130859375 45" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 23 55 L 133.130859375 55" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="none" x="55.312255859375" y="39.5">Director</text></g></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="normal" text-decoration="none" x="28" y="72.5">+Constructor()</text></g></g><g transform="translate(-13,-10) scale(1,1)"><rect fill="#ffffff" stroke="none" x="239" y="20" width="110.130859375" height="57"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 239 20 L 349.130859375 20 L 349.130859375 77 L 239 77 L 239 20 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 239 45 L 349.130859375 45" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 239 55 L 349.130859375 55" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="italic" font-weight="bold" text-decoration="none" x="273.832275390625" y="39.5">Builder</text></g></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="italic" font-weight="normal" text-decoration="none" x="244" y="72.5">+buildProduct()</text></g></g><g transform="translate(-13,-10) scale(1,1)"><rect fill="#ffffff" stroke="none" x="239" y="177" width="110.130859375" height="57"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 239 177 L 349.130859375 177 L 349.130859375 234 L 239 234 L 239 177 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 239 202 L 349.130859375 202" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 239 212 L 349.130859375 212" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="none" x="247.457763671875" y="196.5">ConcreteBuilder</text></g></g><g transform="translate(-13,-10) scale(1,1)"><rect fill="#ffffff" stroke="none" x="455" y="177" width="110.130859375" height="57"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 455 177 L 565.130859375 177 L 565.130859375 234 L 455 234 L 455 177 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 455 202 L 565.130859375 202" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 455 212 L 565.130859375 212" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="none" x="487.66455078125" y="196.5">Product</text></g></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 238 48 L 134 48" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="#FFFFFF" stroke="none" d="M 144.16267485762415 43.790482243984016 L 134 48 L 144.16267485762415 52.209517756015984 L 156 48"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 144.16267485762415 43.790482243984016 L 134 48 L 144.16267485762415 52.209517756015984 L 156 48 L 144.16267485762415 43.790482243984016" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="normal" text-decoration="none" x="207" y="42">1..*</text></g></g><g transform="translate(-13,-10) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="normal" text-decoration="none" x="152" y="42">1</text></g></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 349 192 L 455 192" stroke-miterlimit="10" stroke-dasharray="3"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 444.83732514237585 196.209517756016 L 455 192 L 444.83732514237585 187.790482243984" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 294 176 L 294 78" stroke-miterlimit="10"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="#FFFFFF" stroke="none" d="M 302.419035512032 98.32534971524831 L 294 78 L 285.580964487968 98.32534971524831"/></g><g transform="translate(-13,-10) scale(1,1)"><path fill="none" stroke="#000000" d="M 302.419035512032 98.32534971524831 L 294 78 L 285.580964487968 98.32534971524831 L 302.419035512032 98.32534971524831" stroke-miterlimit="10"/></g></g></svg>
