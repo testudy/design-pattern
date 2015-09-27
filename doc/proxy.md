@@ -6,6 +6,25 @@ Flags: 设计模式 读书笔记 技术
 
 代理（proxy）是一个对象，可以用来控制对另一个对象的访问。它与所代理的*本体（real subject）*对象实现了同样的接口，并且会把任何方法调用传递给本体。
 
+## 代理模式的定义
+
+> Provide a surrogate or placeholder for another object to control access to it.
+> 为其它对象提供一种代理以控制对这个对象的访问。
+
+代理模式也叫委托模式，许多其他的模式，如状态模式、策略模式、访问者模式本质上都是在更特殊的场合下采用了委托模式。代理模式中主要3个角色的定义如下：
+
+### Subject抽象主题角色
+
+抽象主题类可以是抽象类也可以是接口，是一个最普通的业务类型定义，无特殊要求；
+
+### RealSubject具体主题角色
+
+也叫做被委托角色、被代理角色，是业务逻辑的具体执行者；
+
+### Proxy代理主体角色
+
+也叫做委托类、代理类。负责对真实角色的应用。把所有抽象主题类定义的方法限制限制委托给真实主题角色实现，并在真实主题角色处理前后做预处理和善后处理工作。
+
 ## 代理的结构
 
 代理模式最基本的形式是对访问进行控制，代理对象并不会在本体对象的基础上添加方法或修改方法（如装饰者），也不会简化本体对象的接口（如门面元素）。它所实现的接口与本体完全相同，所有对他进行的方法调用都会传递给本体。代理对象所做的不外乎*节制*对本体的访问。
@@ -45,3 +64,60 @@ Flags: 设计模式 读书笔记 技术
 ## 代理模式之弊
 
 代理刻意掩盖了大量复杂行为。
+
+## 代码示例
+
+```java
+// java实现
+
+public interface Subject {
+	public void request();
+}
+
+public class RealSubject implements Subject {
+
+	@Override
+	public void request() {
+		System.out.println("具体类方法调用");
+	}
+
+}
+
+public class Proxy implements Subject {
+
+	private Subject subject = null;
+
+	public Proxy(Object subject) {
+		this.subject = (Subject) subject;
+	}
+
+	@Override
+	public void request() {
+		this.before();
+		this.subject.request();
+		this.after();
+	}
+
+	private void before() {
+		System.out.println("代理预处理");
+	}
+
+	private void after() {
+		System.out.println("代理善后处理");
+	}
+}
+
+public class Client {
+
+	public static void main(String[] args) {
+
+		Subject subject = new Proxy(new RealSubject());
+
+		subject.request();
+	}
+
+}
+```
+
+## 类图结构
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="383.41357421875" height="285"><defs/><g><g transform="translate(-94,-54) scale(1,1)"><rect fill="#ffffff" stroke="none" x="244" y="64" width="83.41357421875" height="57"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 244 64 L 327.41357421875 64 L 327.41357421875 121 L 244 121 L 244 64 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 244 89 L 327.41357421875 89" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 244 99 L 327.41357421875 99" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="italic" font-weight="bold" text-decoration="none" x="264.0263671875" y="83.5">Subject</text></g></g><g transform="translate(-94,-54) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="normal" text-decoration="none" x="249" y="116.5">+Request()</text></g></g><g transform="translate(-94,-54) scale(1,1)"><rect fill="#ffffff" stroke="none" x="104" y="272" width="83.41357421875" height="57"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 104 272 L 187.41357421875 272 L 187.41357421875 329 L 104 329 L 104 272 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 104 297 L 187.41357421875 297" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 104 307 L 187.41357421875 307" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="none" x="110.658203125" y="291.5">RealSubject</text></g></g><g transform="translate(-94,-54) scale(1,1)"><rect fill="#ffffff" stroke="none" x="384" y="272" width="83.41357421875" height="57"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 384 272 L 467.41357421875 272 L 467.41357421875 329 L 384 329 L 384 272 Z Z" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 384 297 L 467.41357421875 297" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 384 307 L 467.41357421875 307" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><g><path fill="none" stroke="none"/><text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="none" x="409.091796875" y="291.5">Proxy</text></g></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 144 272 L 144 232 L 288 232 L 288 121" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="#FFFFFF" stroke="none" d="M 296.419035512032 141.3253497152483 L 288 121 L 279.580964487968 141.3253497152483"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 296.419035512032 141.3253497152483 L 288 121 L 279.580964487968 141.3253497152483 L 296.419035512032 141.3253497152483" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 424 272 L 424 232 L 288 232 L 288 121" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="#FFFFFF" stroke="none" d="M 296.419035512032 141.3253497152483 L 288 121 L 279.580964487968 141.3253497152483"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 296.419035512032 141.3253497152483 L 288 121 L 279.580964487968 141.3253497152483 L 296.419035512032 141.3253497152483" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 383 300 L 188 300" stroke-miterlimit="10"/></g><g transform="translate(-94,-54) scale(1,1)"><path fill="none" stroke="#000000" d="M 198.16267485762415 295.790482243984 L 188 300 L 198.16267485762415 304.209517756016" stroke-miterlimit="10"/></g></g></svg>
